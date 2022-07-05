@@ -6,23 +6,31 @@
 
 body {
 	width: 100vw;
-	height: 100vw;
-    display: flex;
+	height: 100vh;
+	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-image: linear-gradient(315deg, #9397b4 0%, #7c506b 74%);
 }
 
 .wrapper {
-    display: flex;
-	width: 500px;
-	height: 500px;
+	display: flex;
+	width: 40%;
+	height: 60%;
 	background-color: rgb(201, 188, 188);
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 5%;
+	background-color: #7f5a83;
+	background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+	border: 1px solid black;
 }
 
-.btc, .eth, .bnb, .doge{
-    display: flex;
-    flex-direction: row;
+.btc,
+.eth,
+.bnb,
+.doge {
+	display: flex;
+	flex-direction: row;
 }
