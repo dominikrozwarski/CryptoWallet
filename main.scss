@@ -11,26 +11,43 @@ body {
 	justify-content: center;
 	align-items: center;
 	background-image: linear-gradient(315deg, #9397b4 0%, #7c506b 74%);
+	
 }
 
 .wrapper {
 	display: flex;
-	width: 40%;
+	width: 40vh;
 	height: 60%;
 	background-color: rgb(201, 188, 188);
-	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	border-radius: 5%;
-	background-color: #7f5a83;
-	background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+	background-image: linear-gradient(315deg, #552c59 0%, #433855 74%);
 	border: 1px solid black;
+	
+	
 }
 
 .btc,
 .eth,
 .bnb,
-.doge {
-	display: flex;
-	flex-direction: row;
+.doge,
+.coin
+{
+	
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	text-align: center;
+	padding: 10px;
+	color: rgb(167, 156, 156);
 }
+
+.top{
+	position: relative;
+	height: 30%;
+	width: 100%;
+	text-align: center;
+
+	
+}
+
