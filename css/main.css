@@ -38,7 +38,7 @@ body {
           flex-direction: column;
 }
 
-.btc, .eth {
+.btc, .eth, .bnb, .doge {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
