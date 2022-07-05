@@ -21,7 +21,7 @@ eth.onmessage = (event)=>{
 
     stockPriceElement2.innerText =  price;
     
-    stockPriceElement2.style.color =!lastPrice || lastPrice === price ? 'black' : price > lastPrice ? 'green' : 'red' ; 
+    stockPriceElement2.style.color =!lastPrice || lastPrice === price ? 'white' : price > lastPrice ? 'green' : 'red' ; 
     
     lastPrice = price; 
 
@@ -33,7 +33,7 @@ btc.onmessage = (event) => {
     
 	stockPriceElemnt.innerText =  price;
     
-    stockPriceElemnt.style.color =!lastPrice || lastPrice === price ? 'black' : price > lastPrice ? 'green' : 'red' ; 
+    stockPriceElemnt.style.color =!lastPrice || lastPrice === price ? 'white' : price > lastPrice ? 'green' : 'red' ; 
     
     lastPrice = price; 
 };
@@ -45,7 +45,7 @@ bnb.onmessage = (event)=>{
 
     stockPriceElement3.innerText =  price;
     
-    stockPriceElement3.style.color =!lastPrice || lastPrice === price ? 'black' : price > lastPrice ? 'green' : 'red' ; 
+    stockPriceElement3.style.color =!lastPrice || lastPrice === price ? 'white' : price > lastPrice ? 'green' : 'red' ; 
     
     lastPrice = price; 
 
@@ -59,7 +59,7 @@ doge.onmessage = (event)=>{
 
     stockPriceElement4.innerText =  price;
     
-    stockPriceElement4.style.color =!lastPrice || lastPrice === price ? 'black' : price > lastPrice ? 'green' : 'red' ; 
+    stockPriceElement4.style.color =!lastPrice || lastPrice === price ? 'white' : price > lastPrice ? 'green' : 'red' ; 
     
     lastPrice = price; 
 
