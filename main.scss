@@ -9,6 +9,7 @@ body {
 	height: 100vh;
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
 	align-items: center;
 	background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
 	color: rgb(167, 156, 156);
@@ -28,9 +29,9 @@ body {
 	.assets-info {
 		width: 100%;
 		height: 100%;
+		padding-top: 30px;
 		background-image: linear-gradient(315deg, #552c59 0%, #332d3b 74%);
-		border-end-end-radius: 5%;
-		border-end-start-radius: 5%;
+		border-radius: 5%;
 	}
 }
 
@@ -46,16 +47,10 @@ body {
 	color: rgb(167, 156, 156);
 }
 
-.top {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	height: 20%;
-	width: 100%;
-	text-align: center;
-	border-bottom: 1px solid black;
+.coin{
+	padding-bottom: 30px;
 }
+
 
 .logo {
 	display: flex;
@@ -97,10 +92,14 @@ body {
 
 
 h1 {
-	padding: 10px;
-	font-size: 42px;
+	
+	margin: 20px;
+	font-size: 52px;
+	text-align: center;
 }
 
 h2 {
-	font-size: 28px;
+	font-size: 32px;
+	margin-bottom: 30px;
+	text-align: center;
 }
