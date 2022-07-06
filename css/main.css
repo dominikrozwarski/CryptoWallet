@@ -181,10 +181,41 @@ button:hover {
           transform: scale(1.05);
 }
 
-.bottom {
+.bottomOne {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   width: 90%;
   height: 20vh;
   margin: 40px 25px 30px;
-  background-color: #fff;
+}
+
+.bottomOne .assets {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+}
+
+.bottomOne .assets p {
+  color: #a79c9c;
+  font-size: 16px;
 }
 /*# sourceMappingURL=main.css.map */

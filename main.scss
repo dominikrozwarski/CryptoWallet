@@ -124,9 +124,26 @@ button:hover {
 	transform: scale(1.05);
 }
 
-.bottom {
+.bottomOne {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
 	width: 90%;
 	height: 20vh;
 	margin: 40px 25px 30px;
-	background-color: #fff;
+
+	.assets{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		text-align: center;
+		font-size: 18px;
+		color: white;
+		text-align: center;
+		p{
+			color: rgb(167, 156, 156);
+			font-size: 16px;
+		}
+	}
+
 }
