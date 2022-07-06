@@ -17,13 +17,13 @@ body {
 
 .wrapper {
 	display: flex;
-	width: 50vh;
-	height: 60%;
+	width: 500px;
+	height: 700px;
 	align-items: center;
 	flex-direction: column;
 	border-radius: 5%;
 	background-image: linear-gradient(315deg, #391b3c 0%, #3a3146 74%);
-	border: 1px solid black;
+	border: 2px solid black;
 	box-shadow: -2px 2px black;
 
 	.assets-info {
@@ -31,6 +31,7 @@ body {
 		height: 100%;
 		padding-top: 30px;
 		background-image: linear-gradient(315deg, #552c59 0%, #332d3b 74%);
+
 		border-radius: 5%;
 	}
 }
@@ -47,11 +48,10 @@ body {
 	color: rgb(167, 156, 156);
 }
 
-.coin{
+.coin {
 	padding-bottom: 30px;
 	color: rgb(223, 213, 213);
 }
-
 
 .logo {
 	display: flex;
@@ -68,9 +68,9 @@ body {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		object-fit: cover;
 
-		.oneMore, .fourMore {
+		.oneMore,
+		.fourMore {
 			width: 70%;
 			height: 70%;
 
@@ -78,12 +78,10 @@ body {
 		}
 		.twoMore {
 			transform: scale(0.15);
-			
 		}
-		.threeMore{
-			transform: scale(0.06)
+		.threeMore {
+			transform: scale(0.06);
 		}
-		
 	}
 }
 
@@ -91,9 +89,7 @@ body {
 	font-size: 20px;
 }
 
-
 h1 {
-	
 	margin: 20px;
 	font-size: 52px;
 	text-align: center;
@@ -103,4 +99,34 @@ h2 {
 	font-size: 32px;
 	margin-bottom: 30px;
 	text-align: center;
+}
+
+.bottomBtn {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding-top: 30px;
+	button {
+		width: 30%;
+		height: 40px;
+		text-align: center;
+		font-size: 16px;
+		background-color: #753a7b;
+		color: white;
+		border-radius: 20%;
+		transition: transform 0.3s;
+		border: 2px solid #391b3c;
+	}
+}
+
+button:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+}
+
+.bottom {
+	width: 90%;
+	height: 20vh;
+	margin: 40px 25px 30px;
+	background-color: #fff;
 }
