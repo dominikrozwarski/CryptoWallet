@@ -134,7 +134,7 @@ button:hover {
 	height: 20vh;
 	margin: 40px 25px 30px;
 
-	.assets{
+	.assets {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -142,47 +142,41 @@ button:hover {
 		font-size: 18px;
 		color: white;
 		text-align: center;
-		p{
+		p {
 			color: rgb(167, 156, 156);
 			font-size: 16px;
 		}
 	}
-
 }
 
-
-.top{
+.top {
+	position: absolute;
+	right: 0px;
+	top: 0px;
 	display: flex;
 	flex-direction: column;
-	width: 30%;
+	width: auto;	
 	align-items: center;
-
-
-	h3{
-		margin:30px 9% 0 0 ;
-
-	}
-
+	padding-top: 20px;
+	
 }
 
-.topBtn{
+.topBtn {
 	display: flex;
 	flex-direction: row;
-	margin-right: 2%;
-	
-	button{
-		width: 150px;
-		height: 50px;
+
+	button {
+		width: 100px;
+		height: 30px;
 		background-color: red;
 		margin: 20px;
 		text-align: center;
 		font-size: 16px;
-		background-color: #753a7b;
+		background-color: #722a7a;
 		color: white;
-		border-radius: 20%;
+		border-radius: 12%;
 		transition: transform 0.3s;
 		border: 2px solid #391b3c;
 		box-shadow: -1px 1px black;
-		
 	}
 }
