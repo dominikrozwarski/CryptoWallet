@@ -254,7 +254,7 @@ button:hover {
   width: 100px;
   height: 30px;
   background-color: red;
-  margin: 20px;
+  margin: 5px;
   text-align: center;
   font-size: 16px;
   background-color: #722a7a;
@@ -267,5 +267,9 @@ button:hover {
   border: 2px solid #391b3c;
   -webkit-box-shadow: -1px 1px black;
           box-shadow: -1px 1px black;
+}
+
+.topBtn button :hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */
