@@ -5,8 +5,8 @@
 }
 
 body {
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -92,12 +92,12 @@ body {
 
 h1 {
 	margin: 20px;
-	font-size: 52px;
+	font-size: 28px;
 	text-align: center;
 }
 
 h2 {
-	font-size: 32px;
+	font-size: 24px;
 	margin-bottom: 30px;
 	text-align: center;
 }
@@ -137,7 +137,7 @@ button:hover {
 	.assets {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: space-evenly;
 		text-align: center;
 		font-size: 18px;
 		color: white;
@@ -158,6 +158,7 @@ button:hover {
 	width: auto;	
 	align-items: center;
 	padding-top: 20px;
+	margin-right: 15px;
 	
 }
 
