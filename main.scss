@@ -5,8 +5,8 @@
 }
 
 body {
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -131,7 +131,7 @@ button:hover {
 	flex-direction: row;
 	justify-content: space-evenly;
 	width: 90%;
-	height: 20vh;
+	height: 25%;
 	margin: 40px 25px 30px;
 
 	.assets {
@@ -155,11 +155,10 @@ button:hover {
 	top: 0px;
 	display: flex;
 	flex-direction: column;
-	width: auto;	
+	width: auto;
 	align-items: center;
 	padding-top: 20px;
 	margin-right: 15px;
-	
 }
 
 .topBtn {
@@ -179,23 +178,22 @@ button:hover {
 		transition: transform 0.3s;
 		border: 2px solid #391b3c;
 		box-shadow: -1px 1px black;
-	
-		:hover{
+
+		:hover {
 			cursor: pointer;
 		}
 	}
 }
 
-.shadow{
+.shadow {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
-	z-index: -10;	
+	z-index: -10;
 }
 
-
-.walletFake{
+.walletFake {
 	position: absolute;
 	background-color: rgb(109, 50, 89);
 	display: flex;
@@ -221,9 +219,96 @@ button:hover {
 		transition: transform 0.3s;
 		border: 2px solid #391b3c;
 		box-shadow: -1px 1px black;
-	
-		:hover{
+
+		:hover {
 			cursor: pointer;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	h1 {
+		font-size: 24px;
+	}
+	h2 {
+		font-size: 18px;
+	}
+
+	.top {
+		font-size: 12px;
+		button {
+			width: 80px;
+			height: 30px;
+			font-size: 16px;
+		}
+	}
+}
+
+@media (max-width: 678px) {
+	.wrapper {
+		width: 80vw;
+	}
+	.top {
+		button {
+			width: 60px;
+			height: 30px;
+			font-size: 16px;
+		}
+	}
+}
+
+@media (max-width: 540px) {
+	h1 {
+		font-size: 24px;
+	}
+	h2 {
+		font-size: 16px;
+	}
+
+	.top {
+		button {
+			width: 50px;
+			height: 20px;
+			font-size: 12px;
+		}
+	}
+	.bottomOne {
+		.assets {
+			font-size: 14px;
+			p {
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+@media (max-width: 460px){
+	.coin{
+		font-size: 16px;
+	}
+
+	h1{
+		font-size: 12px;
+	}
+	h2{
+		font-size: 10px;
+	}
+
+	.top {
+		font-size: 12px;
+		button {
+			width: 40px;
+			height: 20px;
+			font-size: 10px;
+		}
+	}
+
+	.bottomOne {
+		.assets {
+			font-size: 12px;
+			p {
+				font-size: 10px;
+			}
 		}
 	}
 }
