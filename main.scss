@@ -6,7 +6,7 @@
 
 body {
 	width: 100%;
-	height: 100%;
+	height: 120vh;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -189,8 +189,7 @@ button:hover {
 	position: absolute;
 	width: 100vw;
 	height: 120vh;
-	background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
-	z-index: -10;
+	z-index: 8;
 }
 
 .walletFake {
@@ -209,13 +208,13 @@ button:hover {
 	text-align: center;
 	border: 2px solid black;
 	background-color: rgb(109, 50, 89);
-	z-index: -10;
-	
-	h3{
+	z-index: 10;
+
+	h3 {
 		padding: 10px;
 	}
 
-	p{
+	p {
 		padding-bottom: 15px;
 	}
 
@@ -295,15 +294,15 @@ button:hover {
 	}
 }
 
-@media (max-width: 460px){
-	.coin{
+@media (max-width: 460px) {
+	.coin {
 		font-size: 16px;
 	}
 
-	h1{
+	h1 {
 		font-size: 12px;
 	}
-	h2{
+	h2 {
 		font-size: 10px;
 	}
 
@@ -325,11 +324,11 @@ button:hover {
 		}
 	}
 
-	
-	.assets-info{
-		.accountInfo, .buy, .sell{
-		font-size: 12px;
+	.assets-info {
+		.accountInfo,
+		.buy,
+		.sell {
+			font-size: 12px;
+		}
 	}
-	}
-	
 }
