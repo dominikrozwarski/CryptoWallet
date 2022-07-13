@@ -276,8 +276,8 @@ button:hover {
 
 .shadow {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 120vh;
   background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
   z-index: -10;
 }
@@ -399,6 +399,9 @@ button:hover {
   }
   .bottomOne .assets p {
     font-size: 10px;
+  }
+  .assets-info .accountInfo, .assets-info .buy, .assets-info .sell {
+    font-size: 12px;
   }
 }
 /*# sourceMappingURL=main.css.map */
