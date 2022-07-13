@@ -195,16 +195,29 @@ button:hover {
 
 .walletFake {
 	position: absolute;
-	background-color: rgb(109, 50, 89);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	height: 20vh;
-	width: 40vh;
+	height: 30vh;
+	width: 40vw;
+	max-width: 600px;
+	min-width: 350px;
+	min-height: 150px;
+	padding: 10px;
 	border-radius: 15%;
 	text-align: center;
+	border: 2px solid black;
+	background-color: rgb(109, 50, 89);
 	z-index: -10;
+	
+	h3{
+		padding: 10px;
+	}
+
+	p{
+		padding-bottom: 15px;
+	}
 
 	button {
 		width: 100px;
