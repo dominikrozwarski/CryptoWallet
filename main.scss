@@ -6,7 +6,7 @@
 
 body {
 	width: 100%;
-	height: 120vh;
+	height: 100vh;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -188,7 +188,9 @@ button:hover {
 .shadow {
 	position: absolute;
 	width: 100vw;
-	height: 120vh;
+	height: 80vh;
+	background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
+	opacity: 0.1;
 	z-index: 8;
 }
 
@@ -199,16 +201,16 @@ button:hover {
 	justify-content: center;
 	flex-direction: column;
 	height: 30vh;
-	width: 40vw;
-	max-width: 600px;
-	min-width: 350px;
+	width: 80vw;
+	max-width: 450px;
+	min-width: 150px;
 	min-height: 150px;
 	padding: 10px;
 	border-radius: 15%;
 	text-align: center;
 	border: 2px solid black;
 	background-color: rgb(109, 50, 89);
-	z-index: 10;
+	z-index: -10;
 
 	h3 {
 		padding: 10px;
@@ -300,7 +302,7 @@ button:hover {
 	}
 
 	h1 {
-		font-size: 12px;
+		font-size: 16px;
 	}
 	h2 {
 		font-size: 10px;
@@ -330,5 +332,21 @@ button:hover {
 		.sell {
 			font-size: 12px;
 		}
+	}
+}
+
+@media(max-width:375px){
+	.top {
+		font-size: 10px;
+		button {
+			width: 30px;
+			height: 15px;
+			font-size: 10px;
+		}
+	}
+
+	.bottomOne {
+		position: relative;
+		bottom: 30px;
 	}
 }
