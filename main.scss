@@ -188,10 +188,10 @@ button:hover {
 .shadow {
 	position: absolute;
 	width: 100vw;
-	height: 80vh;
+	height: 110vh;
 	background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
-	opacity: 0.1;
-	z-index: 8;
+	opacity: 1;
+	z-index: -8;
 }
 
 .walletFake {
