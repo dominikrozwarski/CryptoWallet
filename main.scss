@@ -190,7 +190,7 @@ button:hover {
 	width: 100vw;
 	height: 110vh;
 	background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
-	opacity: 1;
+	opacity: 0.9;
 	z-index: -8;
 }
 
@@ -238,6 +238,19 @@ button:hover {
 			cursor: pointer;
 		}
 	}
+}
+
+
+.inside{
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 30vw;
+	height: 20vh;
+	background-color: red;
+
 }
 
 @media (max-width: 768px) {
@@ -335,7 +348,7 @@ button:hover {
 	}
 }
 
-@media(max-width:375px){
+@media (max-width: 375px) {
 	.top {
 		font-size: 10px;
 		button {
@@ -350,3 +363,6 @@ button:hover {
 		bottom: 30px;
 	}
 }
+
+
+

@@ -64,9 +64,7 @@
 
 const fake = document.querySelector('.fake');
 const real = document.querySelector('.real');
-const buy = document.querySelector('.buy');
-const sell = document.querySelector('.sell');
-const accountInfo = document.querySelector('.accountInfo');
+const trade = document.querySelector('.trade');
 const usdtValue = document.querySelector('.usdtValue');
 const btcValue = document.querySelector('.btcValue');
 const ethValue = document.querySelector('.ethValue');
@@ -82,3 +80,29 @@ const btcBnb = document.querySelector('.btcBnb');
 const btcDoge = document.querySelector('.btcDoge');
 const walletFake = document.querySelector('.walletFake');
 const close = document.querySelector('.close');
+const shadow = document.querySelector('.shadow');
+
+
+
+
+
+
+
+const addFakeUsdt = () => {
+	walletFake.style.zIndex = 10;
+	shadow.style.zIndex = 5;
+};
+
+//adding fake wallet
+
+const closeFake = () => {
+    walletFake.style.zIndex = -10;
+	shadow.style.zIndex = -5;
+    usdtValue.innerHTML = '10 000';
+};
+
+// closing fake wallet
+
+
+fake.addEventListener('click', addFakeUsdt);
+close.addEventListener('click', closeFake);
