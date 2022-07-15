@@ -24,7 +24,7 @@
     <div class="shadow"></div>
 
     <div class="inside">
-        <p>Sell</p>
+
         <div class="toSell"><select name="whatToSell">
                 <option value="">USDT</option>
                 <option value="">BTC</option>
@@ -32,9 +32,19 @@
                 <option value="">BNB</option>
                 <option value="">DOGE</option>
                 <input type="text" type="number" class="toSellInput">
-            </select></div>
+            </select>
+        </div>
 
-        <p>Buy</p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-circle" width="24"
+            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <circle cx="12" cy="12" r="9"></circle>
+            <line x1="8" y1="12" x2="12" y2="16"></line>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="16" y1="12" x2="12" y2="16"></line>
+        </svg>
+
         <div class="toBuy"><select name="whatToBuy">
                 <option value="">USDT</option>
                 <option value="">BTC</option>
@@ -42,10 +52,12 @@
                 <option value="">BNB</option>
                 <option value="">DOGE</option>
                 <input type="text" type="number" class="toBuyInput">
-            </select></div>
+            </select>
+        </div>
 
 
-        <p>Amount you will get:</p>
+        <p class="amount">Amount you will get:</p>
+
         <div class="output">
             <p class="output">100</p>
             <p class="coinType">s</p>
