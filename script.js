@@ -81,12 +81,8 @@ const btcDoge = document.querySelector('.btcDoge');
 const walletFake = document.querySelector('.walletFake');
 const close = document.querySelector('.close');
 const shadow = document.querySelector('.shadow');
-
-
-
-
-
-
+const closeBtn2 = document.querySelector('.closeBtn2');
+const inside = document.querySelector('.inside');
 
 const addFakeUsdt = () => {
 	walletFake.style.zIndex = 10;
@@ -96,13 +92,24 @@ const addFakeUsdt = () => {
 //adding fake wallet
 
 const closeFake = () => {
-    walletFake.style.zIndex = -10;
+	walletFake.style.zIndex = -10;
 	shadow.style.zIndex = -5;
-    usdtValue.innerHTML = '10 000';
+	usdtValue.innerHTML = '10 000';
 };
 
 // closing fake wallet
 
+const openTrade = () => {
+	inside.style.zIndex = 10;
+	shadow.style.zIndex = 5;
+};
 
+const closeTrade = () => {
+	inside.style.zIndex = -10;
+	shadow.style.zIndex = -5;
+};
+
+closeBtn2.addEventListener('click', closeTrade);
+trade.addEventListener('click', openTrade);
 fake.addEventListener('click', addFakeUsdt);
 close.addEventListener('click', closeFake);
