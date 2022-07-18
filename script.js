@@ -64,25 +64,62 @@
 
 const fake = document.querySelector('.fake');
 const real = document.querySelector('.real');
-const trade = document.querySelector('.trade');
+
+const trade = document.querySelector('.trade');//trade button
+
+
 const usdtValue = document.querySelector('.usdtValue');
 const btcValue = document.querySelector('.btcValue');
 const ethValue = document.querySelector('.ethValue');
 const bnbValue = document.querySelector('.bnbValue');
 const dogeValue = document.querySelector('.dogeValue');
+
+
 const usdtBtc = document.querySelector('.usdtBtc');
 const usdtEth = document.querySelector('.usdtEth');
 const usdtBnb = document.querySelector('.usdtBnb');
 const usdtDoge = document.querySelector('.usdtDoge');
+
 const btcUsdt = document.querySelector('.btcUsdt');
 const btcEth = document.querySelector('.btcEth');
 const btcBnb = document.querySelector('.btcBnb');
 const btcDoge = document.querySelector('.btcDoge');
+
 const walletFake = document.querySelector('.walletFake');
+
 const close = document.querySelector('.close');
-const shadow = document.querySelector('.shadow');
-const closeBtn2 = document.querySelector('.closeBtn2');
-const inside = document.querySelector('.inside');
+
+const shadow = document.querySelector('.shadow');//shadow while trading
+
+const closeBtn2 = document.querySelector('.closeBtn2');//closing button of trade block
+
+const inside = document.querySelector('.inside');//trading block
+
+const input = document.querySelector('.toSellInput');//trade input
+const tradeBtn = document.querySelector('.tradeBtn');//trade mooney for crytpo btn
+const whatToSell = document.querySelector('.whatToSell');//select coin to sell
+const whatToBuy = document.querySelector('.whatToBuy');//select coin to buy
+
+const money = document.querySelector('.money');//how mouch you will get of trade
+const coinType = document.querySelector('.coinType');//name of the coin you want to buy in text
+
+
+
+
+const getTheInput = () =>{
+	console.log(input.value);
+}
+
+
+
+
+addEventListener('keydown', getTheInput())
+
+
+
+
+
+
 
 const addFakeUsdt = () => {
 	walletFake.style.zIndex = 10;
@@ -108,6 +145,9 @@ const closeTrade = () => {
 	inside.style.zIndex = -10;
 	shadow.style.zIndex = -5;
 };
+
+
+
 
 closeBtn2.addEventListener('click', closeTrade);
 trade.addEventListener('click', openTrade);
