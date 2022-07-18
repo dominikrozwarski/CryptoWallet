@@ -4,6 +4,10 @@
 	margin: 0;
 }
 
+*:focus {
+	outline: none;
+}
+
 body {
 	width: 100%;
 	height: 100vh;
@@ -208,8 +212,8 @@ button:hover {
 	padding: 10px;
 	border-radius: 15%;
 	text-align: center;
-	border: 2px solid black;
-	background-color: rgb(109, 50, 89);
+	border: 2px solid rgb(63, 29, 57);
+	background-image: linear-gradient(315deg, #492456 0%, #3b3439 74%);
 	z-index: -10;
 
 	h3 {
@@ -247,39 +251,47 @@ button:hover {
 	align-items: center;
 	width: 40vw;
 	max-width: 400px;
-	max-height: 600px;
+	max-height: 500px;
 	min-width: 300px;
 	min-height: 250px;
 	height: 20vh;
-	background-color: rgb(109, 50, 89);
+	background-image: linear-gradient(315deg, #6c2d6c 0%, #3e2e39 74%);
 	border-radius: 15%;
-	border: 2px solid rgb(85, 10, 72);
+	border: 2px solid rgb(73, 20, 65);
 	color: white;
 	font-size: 14px;
 	z-index: -10;
 
 	.amount {
-		padding-top: 10px;
+		padding-top: 20px;
 	}
 
 	.output {
 		display: flex;
+	}
+	.money {
 		padding-right: 10px;
 	}
 
+
 	select {
-		width: 60px;
-		height: 100%;
+		width: 80px;
+		height: 140%;
+		text-align: center;
 		border-radius: 15%;
 		background-color: rgb(69, 15, 68);
 		color: white;
-		border: none;
+		border: 2px solid rgb(62, 7, 71);
+		box-shadow: -1px 1px black;
+
+		:hover {
+			transform: scale(1.2);
+		}
+		.input {
+			width: 40px;
+		}
 	}
 
-	select option {
-		border: none;
-		margin: 100px;
-	}
 	svg {
 		margin: 10px;
 		transform: scale(1.3);
