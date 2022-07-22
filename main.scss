@@ -260,18 +260,9 @@ button:hover {
 	border: 2px solid rgb(73, 20, 65);
 	color: white;
 	font-size: 14px;
-	z-index: 10;
+	z-index: -10;
 
-	.amount {
-		padding-top: 20px;
-	}
 
-	.output {
-		display: flex;
-	}
-	.money {
-		padding-right: 10px;
-	}
 
 	select {
 		width: 80px;
@@ -299,6 +290,7 @@ button:hover {
 	.btn {
 		display: flex;
 		flex-direction: row;
+		padding-top: 20px;
 
 		button {
 			width: 100px;
@@ -320,6 +312,53 @@ button:hover {
 	}
 }
 
+
+.final{
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 40vw;
+	max-width: 300px;
+	max-height: 400px;
+	min-width: 290px;
+	min-height: 230px;
+	height: 20vh;
+	background-image: linear-gradient(315deg, #6c2d6c 0%, #3e2e39 74%);
+	border-radius: 15%;
+	border: 2px solid rgb(73, 20, 65);
+	color: white;
+	font-size: 20px;
+	z-index: -10;
+
+
+	.output{
+		display: flex;
+		.total{
+			padding-right: 10px;
+		}
+	}
+
+	button {
+		width: 100px;
+		height: 30px;
+		margin: 5px;
+		text-align: center;
+		font-size: 16px;
+		background-color: #722a7a;
+		color: white;
+		border-radius: 12%;
+		transition: transform 0.3s;
+		border: 2px solid #391b3c;
+		box-shadow: -1px 1px black;
+
+		:hover {
+			cursor: pointer;
+		}
+	}
+}
+
 @media (max-width: 768px) {
 	h1 {
 		font-size: 24px;
@@ -337,6 +376,8 @@ button:hover {
 		}
 	}
 }
+
+
 
 @media (max-width: 678px) {
 	.wrapper {
