@@ -90,9 +90,9 @@ const UsdtToBtc = () =>{
 
 
 let one = Number(stockPriceElemnt.innerHTML);
-let two = typeof(usdtValue.innerHTML);
-
-console.log(one , two);
+let two = parseFloat(usdtValue.innerHTML);
+let three = two/one
+btcUsdt.innerHTML = three.toFixed(4);
 
 
 }
