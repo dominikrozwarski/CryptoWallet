@@ -50,7 +50,6 @@ const EthInside = document.querySelector('#stock-eth'); // eth price
 const BnbInside = document.querySelector('#stock-bnb'); // bnb price
 const DogeInside = document.querySelector('#stock-doge'); //doge price
 
-
 let btc = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
 let stockPriceElemnt = document.getElementById('stock-btc');
 
@@ -82,22 +81,7 @@ btc.onmessage = (event) => {
 };
 
 
-//Value in BTC
 
-
-
-const UsdtToBtc = () =>{
-
-
-let one = Number(stockPriceElemnt.innerHTML);
-let two = parseFloat(usdtValue.innerHTML);
-let three = two/one
-btcUsdt.innerHTML = three.toFixed(4);
-
-
-}
-
-trade.addEventListener('click', UsdtToBtc)
 
 eth.onmessage = (event) => {
 	let stockObject = JSON.parse(event.data);
@@ -154,15 +138,12 @@ const usdt = 1;
 sell = whatToSell.value;
 buy = whatToBuy.value;
 
-
-
-
 const closeFinal = () => {
 	final.style.zIndex = -10;
 	shadow.style.zIndex = 5;
 };
 
-//closing conformation block 
+//closing conformation block
 
 const openFinal = () => {
 	final.style.zIndex = 20;
@@ -179,11 +160,11 @@ const finish = () => {
 
 //finishing transaction button
 
-
-
 const addFakeUsdt = () => {
 	walletFake.style.zIndex = 10;
 	shadow.style.zIndex = 5;
+	usdtValue.innerHTML = '10000';
+	usdtValue2.innerHTML = '10000';
 };
 
 //adding fake wallet
@@ -191,8 +172,10 @@ const addFakeUsdt = () => {
 const closeFake = () => {
 	walletFake.style.zIndex = -10;
 	shadow.style.zIndex = -5;
-	usdtValue.innerHTML = '10 000';
-	usdtValue2.innerHTML = '10 000';
+	let one = Number(stockPriceElemnt.innerHTML);
+	let two = parseFloat(usdtValue.innerHTML);
+	let three = two / one;
+	btcUsdt.innerHTML = three.toFixed(4);
 };
 
 // closing fake wallet
@@ -207,7 +190,6 @@ const closeTrade = () => {
 	shadow.style.zIndex = -5;
 };
 
-
 transBtn.addEventListener('click', finish);
 tradeBtn.addEventListener('click', openFinal);
 closeTran.addEventListener('click', closeFinal);
@@ -216,6 +198,3 @@ closeBtn2.addEventListener('click', closeTrade);
 trade.addEventListener('click', openTrade);
 fake.addEventListener('click', addFakeUsdt);
 close.addEventListener('click', closeFake);
-
-
-
