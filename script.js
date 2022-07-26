@@ -50,6 +50,8 @@ const EthInside = document.querySelector('#stock-eth'); // eth price
 const BnbInside = document.querySelector('#stock-bnb'); // bnb price
 const DogeInside = document.querySelector('#stock-doge'); //doge price
 
+const infoInside = document.querySelector('.infoInside')
+
 let btc = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
 let stockPriceElemnt = document.getElementById('stock-btc');
 
@@ -97,6 +99,15 @@ const sellAssets = () => {
 
 	let two = parseFloat(usdtValue.innerHTML);
 
+	console.log(newInput);
+	if(newInput > (Number(usdtValue.innerHTML))){
+
+		infoInside.innerHTML = 'Not enough money'
+		total.innerHTML = null;
+		coinType.innerHTML = null;
+		script.stop;
+	}
+
 	//usdt to btc sell
 
 	const sellFirst = () => {
@@ -128,7 +139,6 @@ const sellAssets = () => {
 		let ethSell = Number(ethValue.innerHTML) + Number(three);
 
 		if (ethValue.innerHTML != '---') {
-			
 			ethValue.innerHTML = ethSell.toFixed(6);
 			usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
 				2
@@ -214,6 +224,8 @@ const sellAssets = () => {
 		usdtValue2.innerHTML = usdtValue.innerHTML;
 		input.value = null;
 	};
+
+	//condition to sell and buy
 
 	if (whatToSell.value == 1) {
 		if (whatToBuy.value == 2) {
@@ -312,6 +324,19 @@ const addFakeUsdt = () => {
 	shadow.style.zIndex = 5;
 	usdtValue.innerHTML = '10000';
 	usdtValue2.innerHTML = '10000';
+
+	ethValue.innerHTML = '---';
+	bnbValue.innerHTML = '---';
+	dogeValue.innerHTML = '---';
+	btcValue.innerHTML = '---';
+	usdtBtc.innerHTML = '---';
+	usdtEth.innerHTML = '---';
+	usdtBnb.innerHTML = '---';
+	usdtDoge.innerHTML = '---';
+	btcValue2.innerHTML = '---';
+	btcEth.innerHTML = '---';
+	btcBnb.innerHTML = '---';
+	btcDoge.innerHTML = '---';
 };
 
 //adding fake wallet
