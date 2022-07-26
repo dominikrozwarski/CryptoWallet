@@ -50,7 +50,7 @@ const EthInside = document.querySelector('#stock-eth'); // eth price
 const BnbInside = document.querySelector('#stock-bnb'); // bnb price
 const DogeInside = document.querySelector('#stock-doge'); //doge price
 
-const infoInside = document.querySelector('.infoInside')
+const infoInside = document.querySelector('.infoInside');
 
 let btc = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
 let stockPriceElemnt = document.getElementById('stock-btc');
@@ -65,22 +65,6 @@ let doge = new WebSocket('wss://stream.binance.com:9443/ws/dogeusdt@trade');
 let stockPriceElement4 = document.getElementById('stock-doge');
 
 let lastPrice = null;
-
-btc.onmessage = (event) => {
-	let stockObject = JSON.parse(event.data);
-	let price = parseFloat(stockObject.p).toFixed(2);
-
-	stockPriceElemnt.innerText = price;
-
-	stockPriceElemnt.style.color =
-		!lastPrice || lastPrice === price
-			? 'white'
-			: price > lastPrice
-			? 'green'
-			: 'red';
-
-	lastPrice = price;
-};
 
 const sellAssets = () => {
 	let newInput = parseFloat(input.value);
@@ -99,14 +83,14 @@ const sellAssets = () => {
 
 	let two = parseFloat(usdtValue.innerHTML);
 
-	console.log(newInput);
-	if(newInput > (Number(usdtValue.innerHTML))){
-
-		infoInside.innerHTML = 'Not enough money'
+	//condition if input is lesser than wallet money
+	if (newInput > Number(usdtValue.innerHTML)) {
+		infoInside.innerHTML = 'Not enough money';
 		total.innerHTML = null;
 		coinType.innerHTML = null;
-		script.stop;
-	}
+		input.value = null;
+		return;
+	} else infoInside.innerHTML = 'Amount you have recieved';
 
 	//usdt to btc sell
 
@@ -225,6 +209,22 @@ const sellAssets = () => {
 		input.value = null;
 	};
 
+	
+
+	//btc to Usdt
+	const sellFirstV2 = () => {
+
+	};
+	
+	//if same value is traded
+
+	const cannotTrade = () => {
+		infoInside.innerHTML = 'Why are you looking for bugs :(';
+		total.innerHTML = null;
+		coinType.innerHTML = null;
+		input.value = null;
+	};
+
 	//condition to sell and buy
 
 	if (whatToSell.value == 1) {
@@ -236,12 +236,36 @@ const sellAssets = () => {
 			sellThird();
 		} else if (whatToBuy.value == 5) {
 			sellFourth();
+		} else if (whatToSell.value == 1) {
+			cannotTrade();
+		}
+	} else if (whatToSell.value == 2) {
+		if (whatToBuy.value == 1) {
+			sellFirstV2();
 		}
 	}
 };
 
 tradeBtn.addEventListener('click', sellAssets);
 
+//btc api price
+btc.onmessage = (event) => {
+	let stockObject = JSON.parse(event.data);
+	let price = parseFloat(stockObject.p).toFixed(2);
+
+	stockPriceElemnt.innerText = price;
+
+	stockPriceElemnt.style.color =
+		!lastPrice || lastPrice === price
+			? 'white'
+			: price > lastPrice
+			? 'green'
+			: 'red';
+
+	lastPrice = price;
+};
+
+//eth api price
 eth.onmessage = (event) => {
 	let stockObject = JSON.parse(event.data);
 	let price = parseFloat(stockObject.p).toFixed(2);
@@ -258,6 +282,7 @@ eth.onmessage = (event) => {
 	lastPrice = price;
 };
 
+//bnb api price
 bnb.onmessage = (event) => {
 	let stockObject = JSON.parse(event.data);
 	let price = parseFloat(stockObject.p).toFixed(2);
@@ -274,6 +299,7 @@ bnb.onmessage = (event) => {
 	lastPrice = price;
 };
 
+//doge api price
 doge.onmessage = (event) => {
 	let stockObject = JSON.parse(event.data);
 	let price = parseFloat(stockObject.p).toFixed(5);
