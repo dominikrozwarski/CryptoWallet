@@ -82,18 +82,28 @@ btc.onmessage = (event) => {
 
 const sellAssets = () => {
 	let newInput = parseFloat(input.value);
+
+	//btc price
 	let one = Number(stockPriceElemnt.innerHTML);
+
+	//eth price
+	let oneEth = Number(stockPriceElement2.innerHTML);
+
+	//bnb price
+	let oneBnb = Number(stockPriceElement3.innerHTML);
+
+	//doge price
+	let oneDoge = Number(stockPriceElement4.innerHTML);
+
 	let two = parseFloat(usdtValue.innerHTML);
 
+	//usdt to btc sell
+
 	const sellFirst = () => {
-		
 		let three = Number(newInput / one).toFixed(6);
 		total.innerHTML = three;
 		coinType.innerHTML = 'BTC';
 		let btc = Number(btcValue.innerHTML) + Number(three);
-
-
-		
 
 		if (btcValue.innerHTML != '---') {
 			btcValue.innerHTML = btc.toFixed(6);
@@ -103,23 +113,117 @@ const sellAssets = () => {
 			btcValue.innerHTML = three;
 			btcValue2.innerHTML = btcValue.innerHTML;
 			usdtBtc.innerHTML = (Number(btcValue.innerHTML) * Number(one)).toFixed(2);
-
-			
-
 		}
-		
+
 		closeFake();
 		usdtValue.innerHTML = two - newInput;
 		usdtValue2.innerHTML = usdtValue.innerHTML;
 		input.value = null;
-		
-		
+	};
+	//usdt to eth sell
+	const sellSecond = () => {
+		let three = Number(newInput / oneEth).toFixed(6);
+		total.innerHTML = three;
+		coinType.innerHTML = 'ETH';
+		let ethSell = Number(ethValue.innerHTML) + Number(three);
+
+		if (ethValue.innerHTML != '---') {
+			
+			ethValue.innerHTML = ethSell.toFixed(6);
+			usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
+				2
+			);
+			btcEth.innerHTML = (
+				Number(usdtEth.innerHTML) / Number(stockPriceElemnt.innerHTML)
+			).toFixed(4);
+		} else {
+			ethValue.innerHTML = three;
+			usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
+				2
+			);
+			btcEth.innerHTML = (
+				Number(usdtEth.innerHTML) / Number(stockPriceElemnt.innerHTML)
+			).toFixed(4);
+		}
+
+		closeFake();
+		usdtValue.innerHTML = two - newInput;
+		usdtValue2.innerHTML = usdtValue.innerHTML;
+		input.value = null;
+	};
+
+	//usdt to bnb sell
+	const sellThird = () => {
+		let three = Number(newInput / oneBnb).toFixed(6);
+		total.innerHTML = three;
+		coinType.innerHTML = 'BNB';
+		let bnbSell = Number(bnbValue.innerHTML) + Number(three);
+
+		if (bnbValue.innerHTML != '---') {
+			bnbValue.innerHTML = bnbSell.toFixed(6);
+			usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
+				2
+			);
+			btcBnb.innerHTML = (
+				Number(usdtBnb.innerHTML) / Number(stockPriceElemnt.innerHTML)
+			).toFixed(4);
+		} else {
+			bnbValue.innerHTML = three;
+			usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
+				2
+			);
+			btcBnb.innerHTML = (
+				Number(usdtBnb.innerHTML) / Number(stockPriceElemnt.innerHTML)
+			).toFixed(4);
+		}
+
+		closeFake();
+		usdtValue.innerHTML = two - newInput;
+		usdtValue2.innerHTML = usdtValue.innerHTML;
+		input.value = null;
+	};
+
+	//usdt to doge
+
+	const sellFourth = () => {
+		let three = Number(newInput / oneDoge).toFixed(6);
+		total.innerHTML = three;
+		coinType.innerHTML = 'DOGE';
+		let dogeSell = Number(dogeValue.innerHTML) + Number(three);
+
+		if (dogeValue.innerHTML != '---') {
+			dogeValue.innerHTML = dogeSell.toFixed(6);
+			usdtDoge.innerHTML = (
+				Number(dogeValue.innerHTML) * Number(oneDoge)
+			).toFixed(2);
+			btcDoge.innerHTML = (
+				Number(usdtDoge.innerHTML) / Number(stockPriceElemnt.innerHTML)
+			).toFixed(4);
+		} else {
+			dogeValue.innerHTML = three;
+			usdtDoge.innerHTML = (
+				Number(dogeValue.innerHTML) * Number(oneDoge)
+			).toFixed(2);
+			btcDoge.innerHTML = (
+				Number(usdtDoge.innerHTML) / Number(stockPriceElemnt.innerHTML)
+			).toFixed(4);
+		}
+
+		closeFake();
+		usdtValue.innerHTML = two - newInput;
+		usdtValue2.innerHTML = usdtValue.innerHTML;
+		input.value = null;
 	};
 
 	if (whatToSell.value == 1) {
 		if (whatToBuy.value == 2) {
 			sellFirst();
-			
+		} else if (whatToBuy.value == 3) {
+			sellSecond();
+		} else if (whatToBuy.value == 4) {
+			sellThird();
+		} else if (whatToBuy.value == 5) {
+			sellFourth();
 		}
 	}
 };
@@ -235,7 +339,6 @@ const closeTrade = () => {
 
 transBtn.addEventListener('click', finish);
 tradeBtn.addEventListener('click', openFinal);
-
 
 closeBtn2.addEventListener('click', closeTrade);
 trade.addEventListener('click', openTrade);
