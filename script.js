@@ -10,7 +10,7 @@ const bnbValue = document.querySelector('.bnbValue');
 const dogeValue = document.querySelector('.dogeValue');
 
 const usdtValue2 = document.querySelector('.usdtValue2');
-// const usdtValue2 = document.querySelector('.');
+const btcValue2 = document.querySelector('.btcValue2');
 
 const usdtBtc = document.querySelector('.usdtBtc');
 const usdtEth = document.querySelector('.usdtEth');
@@ -80,8 +80,51 @@ btc.onmessage = (event) => {
 	lastPrice = price;
 };
 
+const sellAssets = () => {
+	let newInput = parseFloat(input.value);
+	let one = Number(stockPriceElemnt.innerHTML);
+	let two = parseFloat(usdtValue.innerHTML);
+
+	const sellFirst = () => {
+		
+		let three = Number(newInput / one).toFixed(6);
+		total.innerHTML = three;
+		coinType.innerHTML = 'BTC';
+		let btc = Number(btcValue.innerHTML) + Number(three);
 
 
+		
+
+		if (btcValue.innerHTML != '---') {
+			btcValue.innerHTML = btc.toFixed(6);
+			btcValue2.innerHTML = btcValue.innerHTML;
+			usdtBtc.innerHTML = (Number(btcValue.innerHTML) * Number(one)).toFixed(2);
+		} else {
+			btcValue.innerHTML = three;
+			btcValue2.innerHTML = btcValue.innerHTML;
+			usdtBtc.innerHTML = (Number(btcValue.innerHTML) * Number(one)).toFixed(2);
+
+			
+
+		}
+		
+		closeFake();
+		usdtValue.innerHTML = two - newInput;
+		usdtValue2.innerHTML = usdtValue.innerHTML;
+		input.value = null;
+		
+		
+	};
+
+	if (whatToSell.value == 1) {
+		if (whatToBuy.value == 2) {
+			sellFirst();
+			
+		}
+	}
+};
+
+tradeBtn.addEventListener('click', sellAssets);
 
 eth.onmessage = (event) => {
 	let stockObject = JSON.parse(event.data);
@@ -192,7 +235,7 @@ const closeTrade = () => {
 
 transBtn.addEventListener('click', finish);
 tradeBtn.addEventListener('click', openFinal);
-closeTran.addEventListener('click', closeFinal);
+
 
 closeBtn2.addEventListener('click', closeTrade);
 trade.addEventListener('click', openTrade);
