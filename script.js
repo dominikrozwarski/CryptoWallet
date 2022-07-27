@@ -378,7 +378,9 @@ const sellAssets = () => {
 	//condition to sell and buy
 
 	if (whatToSell.value == 1) {
-		if (whatToBuy.value == 2) {
+		if (whatToBuy.value == 1) {
+			cannotTrade();
+		} else if (whatToBuy.value == 2) {
 			sellFirst();
 		} else if (whatToBuy.value == 3) {
 			sellSecond();
@@ -386,8 +388,6 @@ const sellAssets = () => {
 			sellThird();
 		} else if (whatToBuy.value == 5) {
 			sellFourth();
-		} else if (whatToBuy.value == 1) {
-			cannotTrade();
 		}
 	} else if (whatToSell.value == 2) {
 		if (whatToBuy.value == 1) {
