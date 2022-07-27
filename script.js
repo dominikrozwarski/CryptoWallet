@@ -1,38 +1,49 @@
+//wallets
 const fake = document.querySelector('.fake');
 const real = document.querySelector('.real');
 
 const trade = document.querySelector('.trade'); //trade button
 
+
+//value possition
 const usdtValue = document.querySelector('.usdtValue');
 const btcValue = document.querySelector('.btcValue');
 const ethValue = document.querySelector('.ethValue');
 const bnbValue = document.querySelector('.bnbValue');
 const dogeValue = document.querySelector('.dogeValue');
 
+
+//value for same coin in row  btc-btc usdt-usdt
 const usdtValue2 = document.querySelector('.usdtValue2');
 const btcValue2 = document.querySelector('.btcValue2');
 
+
+//value is value in usdt
 const usdtBtc = document.querySelector('.usdtBtc');
 const usdtEth = document.querySelector('.usdtEth');
 const usdtBnb = document.querySelector('.usdtBnb');
 const usdtDoge = document.querySelector('.usdtDoge');
 
+
+//value in value in btc
 const btcUsdt = document.querySelector('.btcUsdt');
 const btcEth = document.querySelector('.btcEth');
 const btcBnb = document.querySelector('.btcBnb');
 const btcDoge = document.querySelector('.btcDoge');
 
+//info after trans what have been bought
 const total = document.querySelector('.total');
 const coinType = document.querySelector('.coinType');
 
+//window that show result of transaction
 const transBtn = document.querySelector('.transBtn');
 const closeTran = document.querySelector('.closeTran');
 
-const final = document.querySelector('.final');
+const final = document.querySelector('.final'); //showUp window with value we recieved
 
-const walletFake = document.querySelector('.walletFake');
+const walletFake = document.querySelector('.walletFake'); //fake wallet showUp
 
-const close = document.querySelector('.close');
+const close = document.querySelector('.close');// close fake wallet showUp windom
 
 const shadow = document.querySelector('.shadow'); //shadow while trading
 
@@ -50,23 +61,30 @@ const EthInside = document.querySelector('#stock-eth'); // eth price
 const BnbInside = document.querySelector('#stock-bnb'); // bnb price
 const DogeInside = document.querySelector('#stock-doge'); //doge price
 
-const infoInside = document.querySelector('.infoInside');
+const infoInside = document.querySelector('.infoInside'); //text in transaction showUp window
 
+
+//websocket to btc
 let btc = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
 let stockPriceElemnt = document.getElementById('stock-btc');
 
+//websocket to eth
 let eth = new WebSocket('wss://stream.binance.com:9443/ws/ethusdt@trade');
 let stockPriceElement2 = document.getElementById('stock-eth');
 
+
+//websocket to bnb
 let bnb = new WebSocket('wss://stream.binance.com:9443/ws/bnbusdt@trade');
 let stockPriceElement3 = document.getElementById('stock-bnb');
 
+//websocket to doge
 let doge = new WebSocket('wss://stream.binance.com:9443/ws/dogeusdt@trade');
 let stockPriceElement4 = document.getElementById('stock-doge');
 
 let lastPrice = null;
 
 const sellAssets = () => {
+	//value we want to trade
 	let newInput = parseFloat(input.value);
 
 	//btc price
@@ -81,9 +99,9 @@ const sellAssets = () => {
 	//doge price
 	let oneDoge = Number(stockPriceElement4.innerHTML);
 
-	let two = parseFloat(usdtValue.innerHTML);
 
-	let btcAmount = parseFloat(btcValue.innerHTML);
+
+
 
 	//condition if input is lesser than wallet money
 
@@ -110,7 +128,7 @@ const sellAssets = () => {
 
 	//setting usdt innerHtml to proper value after selling
 	const clearUsdt = () => {
-		usdtValue.innerHTML = two - newInput;
+		usdtValue.innerHTML = parseFloat(usdtValue.innerHTML) - newInput;
 		usdtValue2.innerHTML = usdtValue.innerHTML;
 		input.value = null;
 	};
@@ -375,7 +393,13 @@ const sellAssets = () => {
 		input.value = null;
 	};
 
-	//condition to sell and buy
+	//condition to sell and buy | value :
+	// 1-usdt
+	// 2-btc
+	// 3-eth
+	// 4-bnb
+	// 5-doge
+	
 
 	if (whatToSell.value == 1) {
 		if (whatToBuy.value == 1) {
@@ -474,26 +498,28 @@ doge.onmessage = (event) => {
 	lastPrice = price;
 };
 
-let inputValue;
-let sell;
-let buy;
-const usdt = 1;
-sell = whatToSell.value;
-buy = whatToBuy.value;
+// let inputValue;
+// let sell;
+// let buy;
+// const usdt = 1;
+// sell = whatToSell.value;
+// buy = whatToBuy.value;
 
+
+//closing conformation block
 const closeFinal = () => {
 	final.style.zIndex = -10;
 	shadow.style.zIndex = 5;
 };
 
-//closing conformation block
+//confirmation of transaction
 
 const openFinal = () => {
 	final.style.zIndex = 20;
 	shadow.style.zIndex = 12;
 };
 
-//confirmation of transaction
+//finishing transaction button
 
 const finish = () => {
 	final.style.zIndex = -10;
@@ -501,7 +527,7 @@ const finish = () => {
 	inside.style.zIndex = -10;
 };
 
-//finishing transaction button
+//adding fake wallet and setting all value to none
 
 const addFakeUsdt = () => {
 	walletFake.style.zIndex = 10;
@@ -528,9 +554,7 @@ const addFakeUsdt = () => {
 const closeFake = () => {
 	walletFake.style.zIndex = -10;
 	shadow.style.zIndex = -5;
-	let one = Number(stockPriceElemnt.innerHTML);
-	let two = parseFloat(usdtValue.innerHTML);
-	let three = two / one;
+	let three = parseFloat(usdtValue.innerHTML)/ Number(stockPriceElemnt.innerHTML);
 	btcUsdt.innerHTML = three.toFixed(4);
 };
 
@@ -540,6 +564,8 @@ const openTrade = () => {
 	inside.style.zIndex = 10;
 	shadow.style.zIndex = 5;
 };
+
+//closing trading window
 
 const closeTrade = () => {
 	inside.style.zIndex = -10;
