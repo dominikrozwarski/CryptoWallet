@@ -4,7 +4,6 @@ const real = document.querySelector('.real');
 
 const trade = document.querySelector('.trade'); //trade button
 
-
 //value possition
 const usdtValue = document.querySelector('.usdtValue');
 const btcValue = document.querySelector('.btcValue');
@@ -12,18 +11,15 @@ const ethValue = document.querySelector('.ethValue');
 const bnbValue = document.querySelector('.bnbValue');
 const dogeValue = document.querySelector('.dogeValue');
 
-
 //value for same coin in row  btc-btc usdt-usdt
 const usdtValue2 = document.querySelector('.usdtValue2');
 const btcValue2 = document.querySelector('.btcValue2');
-
 
 //value is value in usdt
 const usdtBtc = document.querySelector('.usdtBtc');
 const usdtEth = document.querySelector('.usdtEth');
 const usdtBnb = document.querySelector('.usdtBnb');
 const usdtDoge = document.querySelector('.usdtDoge');
-
 
 //value in value in btc
 const btcUsdt = document.querySelector('.btcUsdt');
@@ -43,7 +39,7 @@ const final = document.querySelector('.final'); //showUp window with value we re
 
 const walletFake = document.querySelector('.walletFake'); //fake wallet showUp
 
-const close = document.querySelector('.close');// close fake wallet showUp windom
+const close = document.querySelector('.close'); // close fake wallet showUp windom
 
 const shadow = document.querySelector('.shadow'); //shadow while trading
 
@@ -63,7 +59,6 @@ const DogeInside = document.querySelector('#stock-doge'); //doge price
 
 const infoInside = document.querySelector('.infoInside'); //text in transaction showUp window
 
-
 //websocket to btc
 let btc = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
 let stockPriceElemnt = document.getElementById('stock-btc');
@@ -71,7 +66,6 @@ let stockPriceElemnt = document.getElementById('stock-btc');
 //websocket to eth
 let eth = new WebSocket('wss://stream.binance.com:9443/ws/ethusdt@trade');
 let stockPriceElement2 = document.getElementById('stock-eth');
-
 
 //websocket to bnb
 let bnb = new WebSocket('wss://stream.binance.com:9443/ws/bnbusdt@trade');
@@ -81,8 +75,8 @@ let stockPriceElement3 = document.getElementById('stock-bnb');
 let doge = new WebSocket('wss://stream.binance.com:9443/ws/dogeusdt@trade');
 let stockPriceElement4 = document.getElementById('stock-doge');
 
-let lastPrice = null;
-
+let lastPrice = null; //value used in api
+let a = null;
 const sellAssets = () => {
 	//value we want to trade
 	let newInput = parseFloat(input.value);
@@ -99,31 +93,48 @@ const sellAssets = () => {
 	//doge price
 	let oneDoge = Number(stockPriceElement4.innerHTML);
 
-
-
-
-
-	//condition if input is lesser than wallet money
+	//condition if input is higher than wallet usdt value
 
 	const lesserThanUsdt = () => {
-		if (newInput > Number(usdtValue.innerHTML)) {
+		if (Number(newInput) > Number(usdtValue.innerHTML)) {
 			infoInside.innerHTML = 'Not enough money';
 			total.innerHTML = null;
 			coinType.innerHTML = null;
 			input.value = null;
-			return;
-		} else infoInside.innerHTML = 'Amount you have recieved';
+			a = 1;
+		} else {
+			infoInside.innerHTML = 'Amount you have recieved';
+			a = 0;
+		}
 	};
 
-	//conditon if input is lesser than wallet btc
+	//conditon if input is higher than wallet btc value
 	const lesserThanBtc = () => {
-		if (newInput > Number(btcValue.innerHTML)) {
+		if (Number(newInput) > Number(btcValue.innerHTML)) {
 			infoInside.innerHTML = 'Not enough money';
 			total.innerHTML = null;
 			coinType.innerHTML = null;
 			input.value = null;
-			return;
-		} else infoInside.innerHTML = 'Amount you have recieved';
+			a = 1;
+		} else {
+			infoInside.innerHTML = 'Amount you have recieved';
+			a = 0;
+		}
+	};
+
+	//conditon if input is higher than wallet eth value
+
+	const lesserThanEth = () => {
+		if (Number(newInput) > Number(ethValue.innerHTML)) {
+			infoInside.innerHTML = 'Not enough money';
+			total.innerHTML = null;
+			coinType.innerHTML = null;
+			input.value = null;
+			a = 1;
+		} else {
+			infoInside.innerHTML = 'Amount you have recieved';
+			a = 0;
+		}
 	};
 
 	//setting usdt innerHtml to proper value after selling
@@ -144,6 +155,19 @@ const sellAssets = () => {
 		input.value = null;
 	};
 
+	//setting eth innerHtml to proper value after selling
+
+	const clearEth = () => {
+		ethValue.innerHTML = (
+			Number(ethValue.innerHTML) - Number(newInput)
+		).toFixed(3);
+		usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
+			2
+		);
+		btcEth.innerHTML = (Number(usdtEth.innerHTML) / Number(one)).toFixed(3);
+		input.value = null;
+	};
+
 	//usdt to btc sell
 
 	const sellFirst = () => {
@@ -159,20 +183,18 @@ const sellAssets = () => {
 
 		if (btcValue.innerHTML != '---') {
 			btcValue.innerHTML = btc.toFixed(6);
-			btcValue2.innerHTML = btcValue.innerHTML;
-			usdtBtc.innerHTML = (Number(btcValue.innerHTML) * Number(one)).toFixed(2);
 		} else {
 			btcValue.innerHTML = three;
-			btcValue2.innerHTML = btcValue.innerHTML;
-			usdtBtc.innerHTML = (Number(btcValue.innerHTML) * Number(one)).toFixed(2);
 		}
-
+		btcValue2.innerHTML = btcValue.innerHTML;
+		usdtBtc.innerHTML = (Number(btcValue.innerHTML) * Number(one)).toFixed(2);
 		closeFake();
 		clearUsdt();
 	};
 	//usdt to eth sell
 	const sellSecond = () => {
 		lesserThanUsdt();
+		console.log(a);
 		if (newInput > Number(usdtValue.innerHTML)) {
 			return;
 		}
@@ -183,22 +205,15 @@ const sellAssets = () => {
 
 		if (ethValue.innerHTML != '---') {
 			ethValue.innerHTML = ethSell.toFixed(6);
-			usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
-				2
-			);
-			btcEth.innerHTML = (
-				Number(usdtEth.innerHTML) / Number(stockPriceElemnt.innerHTML)
-			).toFixed(4);
 		} else {
 			ethValue.innerHTML = three;
-			usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
-				2
-			);
-			btcEth.innerHTML = (
-				Number(usdtEth.innerHTML) / Number(stockPriceElemnt.innerHTML)
-			).toFixed(4);
 		}
-
+		usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
+			2
+		);
+		btcEth.innerHTML = (
+			Number(usdtEth.innerHTML) / Number(stockPriceElemnt.innerHTML)
+		).toFixed(4);
 		closeFake();
 		clearUsdt();
 	};
@@ -216,22 +231,18 @@ const sellAssets = () => {
 
 		if (bnbValue.innerHTML != '---') {
 			bnbValue.innerHTML = bnbSell.toFixed(6);
-			usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
-				2
-			);
-			btcBnb.innerHTML = (
-				Number(usdtBnb.innerHTML) / Number(stockPriceElemnt.innerHTML)
-			).toFixed(4);
 		} else {
 			bnbValue.innerHTML = three;
-			usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
-				2
-			);
-			btcBnb.innerHTML = (
-				Number(usdtBnb.innerHTML) / Number(stockPriceElemnt.innerHTML)
-			).toFixed(4);
 		}
-
+		usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
+			2
+		);
+		usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
+			2
+		);
+		btcBnb.innerHTML = (
+			Number(usdtBnb.innerHTML) / Number(stockPriceElemnt.innerHTML)
+		).toFixed(4);
 		closeFake();
 		clearUsdt();
 	};
@@ -250,22 +261,15 @@ const sellAssets = () => {
 
 		if (dogeValue.innerHTML != '---') {
 			dogeValue.innerHTML = dogeSell.toFixed(6);
-			usdtDoge.innerHTML = (
-				Number(dogeValue.innerHTML) * Number(oneDoge)
-			).toFixed(2);
-			btcDoge.innerHTML = (
-				Number(usdtDoge.innerHTML) / Number(stockPriceElemnt.innerHTML)
-			).toFixed(4);
 		} else {
 			dogeValue.innerHTML = three;
-			usdtDoge.innerHTML = (
-				Number(dogeValue.innerHTML) * Number(oneDoge)
-			).toFixed(2);
-			btcDoge.innerHTML = (
-				Number(usdtDoge.innerHTML) / Number(stockPriceElemnt.innerHTML)
-			).toFixed(4);
 		}
-
+		usdtDoge.innerHTML = (
+			Number(dogeValue.innerHTML) * Number(oneDoge)
+		).toFixed(2);
+		btcDoge.innerHTML = (
+			Number(usdtDoge.innerHTML) / Number(stockPriceElemnt.innerHTML)
+		).toFixed(4);
 		closeFake();
 		clearUsdt();
 	};
@@ -307,18 +311,14 @@ const sellAssets = () => {
 			ethValue.innerHTML = (Number(three) + Number(ethValue.innerHTML)).toFixed(
 				3
 			);
-			usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
-				2
-			);
 		} else {
 			ethValue.innerHTML = Number(three).toFixed(3);
-			usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
-				2
-			);
 		}
 
 		clearBtc();
-
+		usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
+			2
+		);
 		btcEth.innerHTML = (Number(usdtEth.innerHTML) / Number(one)).toFixed(6);
 	};
 
@@ -326,7 +326,7 @@ const sellAssets = () => {
 
 	const sellThirdV2 = () => {
 		lesserThanBtc();
-		if (newInput > Number(btcValue.innerHTML)) {
+		if (a == 1) {
 			return;
 		}
 
@@ -338,18 +338,14 @@ const sellAssets = () => {
 			bnbValue.innerHTML = (Number(three) + Number(bnbValue.innerHTML)).toFixed(
 				3
 			);
-			usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
-				2
-			);
 		} else {
 			bnbValue.innerHTML = Number(three).toFixed(3);
-			usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
-				2
-			);
 		}
 
 		clearBtc();
-
+		usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
+			2
+		);
 		btcBnb.innerHTML = (Number(usdtBnb.innerHTML) / Number(one)).toFixed(6);
 	};
 
@@ -357,7 +353,7 @@ const sellAssets = () => {
 
 	const sellFourthV2 = () => {
 		lesserThanBtc();
-		if (newInput > Number(btcValue.innerHTML)) {
+		if (a == 1) {
 			return;
 		}
 
@@ -369,20 +365,127 @@ const sellAssets = () => {
 			dogeValue.innerHTML = (
 				Number(three) + Number(dogeValue.innerHTML)
 			).toFixed(3);
-			usdtDoge.innerHTML = (
-				Number(dogeValue.innerHTML) * Number(oneDoge)
-			).toFixed(2);
 		} else {
 			dogeValue.innerHTML = Number(three).toFixed(3);
-			usdtDoge.innerHTML = (
-				Number(dogeValue.innerHTML) * Number(oneDoge)
-			).toFixed(2);
 		}
 
 		clearBtc();
-
+		usdtDoge.innerHTML = (
+			Number(dogeValue.innerHTML) * Number(oneDoge)
+		).toFixed(2);
 		btcDoge.innerHTML = (Number(usdtDoge.innerHTML) / Number(one)).toFixed(6);
 	};
+
+	//eth to usdt
+
+	const sellFirstV3 = () => {
+		lesserThanEth();
+		if (a == 1) {
+			return;
+		}
+
+		let three = (Number(newInput) * Number(oneEth)).toFixed(6);
+		total.innerHTML = three;
+		coinType.innerHTML = 'USDT';
+
+		if (usdtValue.innerHTML != '---') {
+			usdtValue.innerHTML = (
+				Number(three) + Number(usdtValue.innerHTML)
+			).toFixed(2);
+		} else {
+			usdtValue.innerHTML = Number(three).toFixed(2);
+		}
+		btcUsdt.innerHTML = (Number(usdtValue.innerHTML) / Number(one)).toFixed(6);
+		usdtValue2.innerHTML = usdtValue.innerHTML;
+
+		clearEth();
+	};
+
+	//eth to btc
+
+	const sellSecondV3 = () => {
+		lesserThanEth();
+		if (a == 1) {
+			return;
+		}
+
+		let three = ((Number(newInput) * Number(oneEth)) / Number(one)).toFixed(6);
+		total.innerHTML = three;
+		coinType.innerHTML = 'BTC';
+
+		if (btcValue.innerHTML != '---') {
+			btcValue.innerHTML = (Number(three) + Number(btcValue.innerHTML)).toFixed(
+				6
+			);
+		} else {
+			btcValue.innerHTML = Number(three).toFixed(6);
+		}
+		btcValue2.innerHTML = btcValue.innerHTML;
+		usdtBtc.innerHTML = (Number(btcValue.innerHTML) * Number(one)).toFixed(2);
+
+		clearEth();
+	};
+
+	//eth to bnb
+
+	const sellThirdV3 = () => {
+		lesserThanEth();
+		if (a == 1) {
+			return;
+		}
+
+		let three = ((Number(newInput) * Number(oneEth)) / Number(oneBnb)).toFixed(
+			6
+		);
+		total.innerHTML = three;
+		coinType.innerHTML = 'BNB';
+
+		if (bnbValue.innerHTML != '---') {
+			bnbValue.innerHTML = (Number(three) + Number(bnbValue.innerHTML)).toFixed(
+				2
+			);
+		} else {
+			bnbValue.innerHTML = Number(three).toFixed(2);
+		}
+
+		usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
+			2
+		);
+		btcBnb.innerHTML = (Number(usdtBnb.innerHTML) / Number(one)).toFixed(6);
+
+		clearEth();
+	};
+
+
+	//eth to doge
+
+	const sellFourthV3 = () =>{
+		lesserThanEth();
+		if (a == 1) {
+			return;
+		}
+
+		let three = ((Number(newInput) * Number(oneEth)) / Number(oneDoge)).toFixed(
+			2
+		);
+		total.innerHTML = three;
+		coinType.innerHTML = 'DOGE';
+
+		if (dogeValue.innerHTML != '---') {
+			dogeValue.innerHTML = (Number(three) + Number(dogeValue.innerHTML)).toFixed(
+				2
+			);
+		} else {
+			dogeValue.innerHTML = Number(three).toFixed(2);
+		}
+
+		usdtDoge.innerHTML = (Number(dogeValue.innerHTML) * Number(oneDoge)).toFixed(
+			2
+		);
+		btcDoge.innerHTML = (Number(usdtDoge.innerHTML) / Number(one)).toFixed(6);
+
+		clearEth();
+	}
 
 	//if same value is traded
 
@@ -399,7 +502,6 @@ const sellAssets = () => {
 	// 3-eth
 	// 4-bnb
 	// 5-doge
-	
 
 	if (whatToSell.value == 1) {
 		if (whatToBuy.value == 1) {
@@ -424,6 +526,18 @@ const sellAssets = () => {
 			sellThirdV2();
 		} else if (whatToBuy.value == 5) {
 			sellFourthV2();
+		}
+	} else if (whatToSell.value == 3) {
+		if (whatToBuy.value == 1) {
+			sellFirstV3();
+		} else if (whatToBuy.value == 2) {
+			sellSecondV3();
+		} else if (whatToBuy.value == 3) {
+			cannotTrade();
+		} else if (whatToBuy.value == 4) {
+			sellThirdV3();
+		} else if(whatToBuy.value == 5){
+			sellFourthV3();
 		}
 	}
 };
@@ -505,7 +619,6 @@ doge.onmessage = (event) => {
 // sell = whatToSell.value;
 // buy = whatToBuy.value;
 
-
 //closing conformation block
 const closeFinal = () => {
 	final.style.zIndex = -10;
@@ -549,16 +662,17 @@ const addFakeUsdt = () => {
 	btcDoge.innerHTML = '---';
 };
 
-//adding fake wallet
+//closing popUp window of fake wallet info
 
 const closeFake = () => {
 	walletFake.style.zIndex = -10;
 	shadow.style.zIndex = -5;
-	let three = parseFloat(usdtValue.innerHTML)/ Number(stockPriceElemnt.innerHTML);
+	let three =
+		parseFloat(usdtValue.innerHTML) / Number(stockPriceElemnt.innerHTML);
 	btcUsdt.innerHTML = three.toFixed(4);
 };
 
-// closing fake wallet
+// opening trade window
 
 const openTrade = () => {
 	inside.style.zIndex = 10;
