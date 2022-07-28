@@ -456,10 +456,9 @@ const sellAssets = () => {
 		clearEth();
 	};
 
-
 	//eth to doge
 
-	const sellFourthV3 = () =>{
+	const sellFourthV3 = () => {
 		lesserThanEth();
 		if (a == 1) {
 			return;
@@ -472,20 +471,20 @@ const sellAssets = () => {
 		coinType.innerHTML = 'DOGE';
 
 		if (dogeValue.innerHTML != '---') {
-			dogeValue.innerHTML = (Number(three) + Number(dogeValue.innerHTML)).toFixed(
-				2
-			);
+			dogeValue.innerHTML = (
+				Number(three) + Number(dogeValue.innerHTML)
+			).toFixed(2);
 		} else {
 			dogeValue.innerHTML = Number(three).toFixed(2);
 		}
 
-		usdtDoge.innerHTML = (Number(dogeValue.innerHTML) * Number(oneDoge)).toFixed(
-			2
-		);
+		usdtDoge.innerHTML = (
+			Number(dogeValue.innerHTML) * Number(oneDoge)
+		).toFixed(2);
 		btcDoge.innerHTML = (Number(usdtDoge.innerHTML) / Number(one)).toFixed(6);
 
 		clearEth();
-	}
+	};
 
 	//if same value is traded
 
@@ -536,7 +535,7 @@ const sellAssets = () => {
 			cannotTrade();
 		} else if (whatToBuy.value == 4) {
 			sellThirdV3();
-		} else if(whatToBuy.value == 5){
+		} else if (whatToBuy.value == 5) {
 			sellFourthV3();
 		}
 	}
@@ -611,13 +610,6 @@ doge.onmessage = (event) => {
 
 	lastPrice = price;
 };
-
-// let inputValue;
-// let sell;
-// let buy;
-// const usdt = 1;
-// sell = whatToSell.value;
-// buy = whatToBuy.value;
 
 //closing conformation block
 const closeFinal = () => {
