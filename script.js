@@ -137,6 +137,20 @@ const sellAssets = () => {
 		}
 	};
 
+	//conditon if input is higher than wallet bnb value
+	const lesserThanBnb = () => {
+		if (Number(newInput) > Number(bnbValue.innerHTML)) {
+			infoInside.innerHTML = 'Not enough money';
+			total.innerHTML = null;
+			coinType.innerHTML = null;
+			input.value = null;
+			a = 1;
+		} else {
+			infoInside.innerHTML = 'Amount you have recieved';
+			a = 0;
+		}
+	};
+
 	//setting usdt innerHtml to proper value after selling
 	const clearUsdt = () => {
 		usdtValue.innerHTML = parseFloat(usdtValue.innerHTML) - newInput;
@@ -165,6 +179,19 @@ const sellAssets = () => {
 			2
 		);
 		btcEth.innerHTML = (Number(usdtEth.innerHTML) / Number(one)).toFixed(3);
+		input.value = null;
+	};
+
+	//setting eth innerHtml to proper value after selling
+
+	const clearBnb = () => {
+		bnbValue.innerHTML = (
+			Number(bnbValue.innerHTML) - Number(newInput)
+		).toFixed(3);
+		usdtBnb.innerHTML = (Number(bnbValue.innerHTML) * Number(oneBnb)).toFixed(
+			2
+		);
+		btcBnb.innerHTML = (Number(usdtBnb.innerHTML) / Number(one)).toFixed(3);
 		input.value = null;
 	};
 
@@ -486,6 +513,122 @@ const sellAssets = () => {
 		clearEth();
 	};
 
+	//bnb to usdt
+
+	const sellFirstV4 = () => {
+		lesserThanBnb();
+		if (a == 1) {
+			return;
+		}
+
+		let three = (Number(newInput) * Number(oneBnb)).toFixed(2);
+		total.innerHTML = three;
+		coinType.innerHTML = 'USDT';
+
+		if (usdtValue.innerHTML != '---') {
+			usdtValue.innerHTML = (
+				Number(three) + Number(usdtValue.innerHTML)
+			).toFixed(2);
+		} else {
+			usdtValue.innerHTML = Number(three).toFixed(2);
+		}
+
+		usdtValue2.innerHTML = usdtValue.innerHTML;
+		btcUsdt.innerHTML = (Number(usdtValue.innerHTML) / Number(one)).toFixed(6);
+
+		clearBnb();
+	};
+
+	//bnb to btc
+
+	const sellSecondV4 = () => {
+		lesserThanBnb();
+		if (a == 1) {
+			return;
+		}
+
+		let three = ((Number(newInput) * Number(oneBnb)) / Number(one)).toFixed(6);
+		total.innerHTML = three;
+		coinType.innerHTML = 'BTC';
+
+		if (btcValue.innerHTML != '---') {
+			btcValue.innerHTML = (Number(btcValue.innerHTML) + Number(three)).toFixed(
+				6
+			);
+		} else {
+			btcValue.innerHTML = Number(three).toFixed(6);
+		}
+
+		btcValue2.innerHTML = btcValue.innerHTML;
+
+		usdtBtc.innerHTML = (Number(btcValue.innerHTML) * Number(one)).toFixed(2);
+
+		clearBnb();
+	};
+
+	//bnb to eth
+
+	const sellThirdV4 = () => {
+		lesserThanBnb();
+		if (a == 1) {
+			return;
+		}
+
+		let three = ((Number(newInput) * Number(oneBnb)) / Number(oneEth)).toFixed(
+			6
+		);
+		total.innerHTML = three;
+		coinType.innerHTML = 'ETH';
+
+		if (ethValue.innerHTML != '---') {
+			ethValue.innerHTML = (Number(ethValue.innerHTML) + Number(three)).toFixed(
+				6
+			);
+		} else {
+			ethValue.innerHTML = Number(three).toFixed(6);
+		}
+
+		usdtEth.innerHTML = (Number(ethValue.innerHTML) * Number(oneEth)).toFixed(
+			2
+		);
+
+		btcEth.innerHTML = (Number(usdtEth.innerHTML) / Number(one)).toFixed(6);
+
+		clearBnb();
+	};
+
+	//bnb to doge
+
+	const sellFourthV4 = () =>{
+		lesserThanBnb();
+		if (a == 1) {
+			return;
+		}
+
+		let three = ((Number(newInput) * Number(oneBnb)) / Number(oneDoge)).toFixed(
+			6
+		);
+		total.innerHTML = three;
+		coinType.innerHTML = 'DOGE';
+
+		if (dogeValue.innerHTML != '---') {
+			dogeValue.innerHTML = (Number(dogeValue.innerHTML) + Number(three)).toFixed(
+				2
+			);
+		} else {
+			dogeValue.innerHTML = Number(three).toFixed(2);
+		}
+
+		usdtDoge.innerHTML = (Number(dogeValue.innerHTML) * Number(oneDoge)).toFixed(
+			2
+		);
+
+		btcDoge.innerHTML = (Number(usdtDoge.innerHTML) / Number(one)).toFixed(6);
+
+		clearBnb();
+
+	}
+
 	//if same value is traded
 
 	const cannotTrade = () => {
@@ -537,6 +680,18 @@ const sellAssets = () => {
 			sellThirdV3();
 		} else if (whatToBuy.value == 5) {
 			sellFourthV3();
+		}
+	} else if (whatToSell.value == 4) {
+		if (whatToBuy.value == 1) {
+			sellFirstV4();
+		} else if (whatToBuy.value == 2) {
+			sellSecondV4();
+		} else if (whatToBuy.value == 3) {
+			sellThirdV4();
+		}else if(whatToBuy.value ==4){
+			cannotTrade();
+		}else if(whatToBuy.value ==5){
+			sellFourthV4();
 		}
 	}
 };
