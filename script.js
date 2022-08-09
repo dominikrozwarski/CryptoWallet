@@ -1,6 +1,5 @@
-//wallets
+//wallet
 const fake = document.querySelector('.fake');
-const real = document.querySelector('.real');
 
 const trade = document.querySelector('.trade'); //trade button
 
@@ -182,7 +181,7 @@ const sellAssets = () => {
 
 	//setting usdt innerHtml to proper value after selling
 	const clearUsdt = () => {
-		usdtValue.innerHTML = parseFloat(usdtValue.innerHTML) - newInput;
+		usdtValue.innerHTML = (parseFloat(usdtValue.innerHTML) - newInput).toFixed(2);
 		usdtValue2.innerHTML = usdtValue.innerHTML;
 		input.value = null;
 	};
@@ -995,6 +994,46 @@ const closeTrade = () => {
 	shadow.style.zIndex = -5;
 };
 
+//value update after 2 second for every stock value in usdt and btc
+
+const valueUpdate = () => {
+	if (usdtValue.textContent != '---') {
+		btcUsdt.textContent = (
+			Number(usdtValue.innerHTML) / Number(stockPriceElemnt.innerHTML)
+		).toFixed(6);
+		
+	}
+	if (btcValue.textContent != '---') {
+		usdtBtc.textContent = (
+			Number(stockPriceElemnt.innerHTML) * Number(btcValue.innerHTML)
+		).toFixed(2);
+	}
+	if (ethValue.textContent != '---') {
+		usdtEth.innerHTML = (
+			Number(stockPriceElement2.innerHTML) * Number(ethValue.innerHTML)
+		).toFixed(2);
+		btcEth.innerHTML = (
+			Number(usdtEth.innerHTML) / Number(stockPriceElemnt.innerHTML)
+		).toFixed(6);
+	}
+	if (bnbValue.textContent != '---') {
+		usdtBnb.innerHTML = (
+			Number(stockPriceElement3.innerHTML) * Number(bnbValue.innerHTML)
+		).toFixed(2);
+		btcBnb.innerHTML = (
+			Number(usdtBnb.innerHTML) / Number(stockPriceElemnt.innerHTML)
+		).toFixed(6);
+	}
+	if (dogeValue.textContent != '---') {
+		usdtDoge.innerHTML = (
+			Number(stockPriceElement4.innerHTML) * Number(dogeValue.innerHTML)
+		).toFixed(2);
+		btcDoge.innerHTML = (
+			Number(usdtDoge.innerHTML) / Number(stockPriceElemnt.innerHTML)
+		).toFixed(6);
+	}
+};
+
 transBtn.addEventListener('click', finish);
 tradeBtn.addEventListener('click', openFinal);
 
@@ -1002,3 +1041,7 @@ closeBtn2.addEventListener('click', closeTrade);
 trade.addEventListener('click', openTrade);
 fake.addEventListener('click', addFakeUsdt);
 close.addEventListener('click', closeFake);
+
+
+//updating prices for stock we have
+setInterval(valueUpdate, 2000);
