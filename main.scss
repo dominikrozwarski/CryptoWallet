@@ -10,7 +10,7 @@
 
 body {
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -192,7 +192,7 @@ button:hover {
 .shadow {
 	position: absolute;
 	width: 100vw;
-	height: 110vh;
+	height: 135%;
 	background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
 	opacity: 0.9;
 	z-index: -8;
@@ -262,8 +262,6 @@ button:hover {
 	font-size: 14px;
 	z-index: -10;
 
-
-
 	select {
 		width: 80px;
 		height: 140%;
@@ -312,8 +310,7 @@ button:hover {
 	}
 }
 
-
-.final{
+.final {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
@@ -330,12 +327,11 @@ button:hover {
 	border: 2px solid rgb(73, 20, 65);
 	color: white;
 	font-size: 20px;
-	z-index: -10;
-
-
-	.output{
+	z-index: 10;
+	
+	.output {
 		display: flex;
-		.total{
+		.total {
 			padding-right: 10px;
 		}
 	}
@@ -376,8 +372,6 @@ button:hover {
 		}
 	}
 }
-
-
 
 @media (max-width: 678px) {
 	.wrapper {

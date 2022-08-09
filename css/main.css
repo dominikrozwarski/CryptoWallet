@@ -11,7 +11,7 @@
 
 body {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -281,7 +281,7 @@ button:hover {
 .shadow {
   position: absolute;
   width: 100vw;
-  height: 110vh;
+  height: 135%;
   background-image: linear-gradient(315deg, #3b438d 0%, #3b3439 74%);
   opacity: 0.9;
   z-index: -8;
@@ -460,7 +460,7 @@ button:hover {
   border: 2px solid #491441;
   color: white;
   font-size: 20px;
-  z-index: -10;
+  z-index: 10;
 }
 
 .final .output {

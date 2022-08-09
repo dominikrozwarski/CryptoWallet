@@ -92,10 +92,12 @@ const sellAssets = () => {
 	//doge price
 	let oneDoge = Number(stockPriceElement4.innerHTML);
 
+
+
+
 	//condition if input is higher than wallet usdt value
 
 	const lesserThanUsdt = () => {
-		console.log(usdtValue.innerHTML);
 		if (
 			Number(newInput) > Number(usdtValue.innerHTML) ||
 			usdtValue.textContent == '---'
@@ -777,7 +779,7 @@ const sellAssets = () => {
 	//if same value is traded
 
 	const cannotTrade = () => {
-		infoInside.innerHTML = 'Why are you looking for bugs :(';
+		infoInside.innerHTML = "Can't swap same coin";
 		total.innerHTML = null;
 		coinType.innerHTML = null;
 		input.value = null;
