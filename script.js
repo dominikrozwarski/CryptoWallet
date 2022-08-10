@@ -58,6 +58,13 @@ const DogeInside = document.querySelector('#stock-doge'); //doge price
 
 const infoInside = document.querySelector('.infoInside'); //text in transaction showUp window
 
+
+//question mark inside and button
+const qMark =document.querySelector('.qMark')
+const qMarkInside = document.querySelector('.qMarkInside')
+const closeMark = document.querySelector('.closeMark')
+
+
 //websocket to btc
 let btc = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
 let stockPriceElemnt = document.getElementById('stock-btc');
@@ -100,7 +107,7 @@ const sellAssets = () => {
 	const lesserThanUsdt = () => {
 		if (
 			Number(newInput) > Number(usdtValue.innerHTML) ||
-			usdtValue.textContent == '---'
+			usdtValue.textContent == '---' || Number(newInput) <= 0
 		) {
 			infoInside.innerHTML = 'Not enough money';
 			total.innerHTML = null;
@@ -117,7 +124,7 @@ const sellAssets = () => {
 	const lesserThanBtc = () => {
 		if (
 			Number(newInput) > Number(btcValue.innerHTML) ||
-			btcValue.textContent == '---'
+			btcValue.textContent == '---' || Number(newInput) <= 0
 		) {
 			infoInside.innerHTML = 'Not enough money';
 			total.innerHTML = null;
@@ -135,7 +142,7 @@ const sellAssets = () => {
 	const lesserThanEth = () => {
 		if (
 			Number(newInput) > Number(ethValue.innerHTML) ||
-			ethValue.textContent == '---'
+			ethValue.textContent == '---' || Number(newInput) <= 0
 		) {
 			infoInside.innerHTML = 'Not enough money';
 			total.innerHTML = null;
@@ -152,7 +159,7 @@ const sellAssets = () => {
 	const lesserThanBnb = () => {
 		if (
 			Number(newInput) > Number(bnbValue.innerHTML) ||
-			bnbValue.textContent == '---'
+			bnbValue.textContent == '---' || Number(newInput) <= 0
 		) {
 			infoInside.innerHTML = 'Not enough money';
 			total.innerHTML = null;
@@ -168,7 +175,7 @@ const sellAssets = () => {
 	const lesserThanDoge = () => {
 		if (
 			Number(newInput) > Number(dogeValue.innerHTML) ||
-			dogeValue.textContent == '---'
+			dogeValue.textContent == '---' || Number(newInput) <= 0
 		) {
 			infoInside.innerHTML = 'Not enough money';
 			total.innerHTML = null;
@@ -996,6 +1003,20 @@ const closeTrade = () => {
 	shadow.style.zIndex = -5;
 };
 
+
+//opening instruction by clicking question mark
+const openMark = () =>{
+	qMarkInside.style.zIndex = 10;
+	shadow.style.zIndex = 9;
+}
+
+
+//closing instruction in querstion mark
+const closeMarkWindow = () =>{
+	qMarkInside.style.zIndex = -10;
+	shadow.style.zIndex = -10;
+}
+
 //value update after 2 second for every stock value in usdt and btc
 
 const valueUpdate = () => {
@@ -1036,6 +1057,12 @@ const valueUpdate = () => {
 	}
 };
 
+
+
+
+
+closeMark.addEventListener('click', closeMarkWindow)
+qMark.addEventListener('click',openMark)
 transBtn.addEventListener('click', finish);
 tradeBtn.addEventListener('click', openFinal);
 
