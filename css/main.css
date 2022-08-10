@@ -556,7 +556,6 @@ button:hover {
 
 .qMark {
   position: absolute;
-  z-index: 100;
   height: 60px;
   top: 3%;
   left: 10%;
